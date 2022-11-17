@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    eigr_functions_protocol_major_version: "0"
+    eigr_functions_protocol_minor_version: "1"
+    proxy_name: spawn
+    k8s-app: spawn-dice-game
+  name: spawn-dice-game
+  namespace: eigr-labs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      eigr_functions_protocol_major_version: "0"
+      eigr_functions_protocol_minor_version: "1"
+      proxy_name: spawn
+      k8s-app: spawn-dice-game
+  template:
+    metadata:
+      labels:
+        eigr_functions_protocol_major_version: "0"
+        eigr_functions_protocol_minor_version: "1"
+        proxy_name: spawn
+        k8s-app: spawn-dice-game
+    spec:
+      containers:
+        - env:
+            - name: MIX_ENV
+              value: prod
+          image: eigr-labs/dice-game:0.1.0
+          name: spawn-dice-game
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1024Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            runAsUser: 65534

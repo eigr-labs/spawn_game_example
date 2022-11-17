@@ -10,7 +10,8 @@ defmodule Dice.MixProject do
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -47,20 +48,26 @@ defmodule Dice.MixProject do
       {:horde, "~> 0.8.7"},
       {:uuid, "~> 1.1"},
       {:protobuf, "~> 0.11.0"},
-      {:spawn_sdk, "~> 0.5.0-alpha.11"}
+      {:spawn_sdk, "~> 0.5.0-alpha.11"},
+      {:spawn_statestores_mysql, "~> 0.5.0-alpha.11"}
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to install project dependencies and perform other setup tasks, run:
-  #
-  #     $ mix setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
       setup: ["deps.get"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
+    ]
+  end
+
+  defp releases do
+    [
+      dice: [
+        include_executables_for: [:unix],
+        include_erts: Mix.env() == :prod,
+        applications: [dice: :permanent],
+        steps: [:assemble]
+      ]
     ]
   end
 end

@@ -1,0 +1,12 @@
+---
+apiVersion: spawn-eigr.io/v1
+kind: ActorHost
+metadata:
+  name: spawn-dice-game
+  system: game-system
+  namespace: eigr-labs
+spec:
+  host:
+    image: eigr-labs/dice-game:0.1.0 # Mandatory
+    ports:
+      - containerPort: 8091
