@@ -17,6 +17,15 @@ One of the goals with this game is to be able to play whoever you want in the wo
   - Having the ability to have custom invocations from different implementations that connect with the game
     - For example, if we were to make this game interactive with Twitch Chat or something like that, this twitch chat communication service could be done in any language that has a Spawn SDK support
 
+## Actor definitions
+
+See Spawn Actor definitions for:
+
+  - [Matchmaking](./lib/dice/matchmaking/matchmaking_actor.ex)
+    - [Matchmaking Actor Proto Definitions](./priv/protos/matchmaking.proto)
+  - [Game](./lib/dice/game/match_actor.ex)
+    - [Game Actor Proto Definitions](./priv/protos/game/match.proto)
+
 ## Game Overview
 
 Knucklebones is a multiplayer game with the following rules:
