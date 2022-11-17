@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package dice.game;
+
+enum MatchStatus {
+  waiting_players = 0;
+  starting = 1;
+  playing = 2;
+  finished = 3;
+  finished_draw = 4;
+}
+
+message BoardRow {
+  repeated int32 row = 1;
+}
+
+message Snapshot {
+  repeated BoardRow board = 1;
+  repeated int32 rows_sum = 2;
+  int32 total = 3;
+}
+
+message MatchState {
+  string id = 1;
+  string winner_ref = 2;
+  string loser_ref = 3;
+  string player_turn_ref = 4;
+  int32 player_turn_dice = 5;
+  MatchStatus status = 6;
+  int64 scheduled_to = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+  map<string, Snapshot> players = 10;
+  string matchmaking_ref = 11;
+}
+
+message MatchCreateAction {
+  string matchmaking_ref = 1;
+}
+
+message PlayMatchAction {
+  string player_ref = 1;
+  int32 row_index = 2;
+}
+
+message JoinMatchAction {
+  string player_ref = 1;
+}
+
+message MatchEvent {
+  string event = 1;
+  MatchState state = 2;
+}

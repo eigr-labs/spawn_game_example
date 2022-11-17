@@ -1,0 +1,5 @@
+<section class="match-container">
+  <p class="title"><%= @match.id %></p>
+
+  <.live_component module={DiceWeb.Live.MatchComponent} id="match_component" player_id={@player_id} match={@match} spectate={@spectate}/>
+</section>

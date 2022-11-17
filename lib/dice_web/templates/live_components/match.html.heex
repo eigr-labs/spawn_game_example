@@ -1,0 +1,47 @@
+<div style="text-align: center">
+  <%= if @match.status == :starting && @match.scheduled_to do %>
+    <div class="fade-screen-info">
+      <h1 class="bold">Starting in <span id={UUID.uuid4(:default)} data-scheduled-to={@match.scheduled_to} phx-hook="Countdown"></span></h1>
+    </div>
+  <% end %>
+
+  <%= if @match.finished do %>
+    <div class="fade-screen-info">
+      <%= if @match.winner do %>
+        <%= cond do %>
+        <% @match.winner == @player_id -> %>
+          <h1 class="bold">
+            You win! <br/>
+            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
+          </h1>
+        <% @spectate -> %>
+          <h1 class="bold">
+            Match ended <br/>
+            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
+          </h1>
+        <% true -> %>
+          <h1 class="bold">
+            You lose! <br/>
+            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
+          </h1>
+        <% end %>
+      <% else %>
+        <h1 class="bold">Draw</h1>
+      <% end %>
+
+      <button phx-click="rematch">Rematch</button>
+    </div>
+  <% end %>
+
+  <%= cond do %>
+  <% @match.my_turn -> %>
+    <h1>Your turn</h1>
+  <% @spectate -> %>
+    <h1>Spectating</h1>
+  <% true -> %>
+    <h1>Enemy turn</h1>
+  <% end %>
+
+  <.live_component module={DiceWeb.Live.BoardComponent} id="board_id" match={@match} enemy={false} player_id={@player_id} snapshot={@match.board_snapshot} />
+  <.live_component module={DiceWeb.Live.BoardComponent} id="opposite_board_id" match={@match} enemy={true} player_id={@player_id} snapshot={@match.opposite_board_snapshot} />
+</div>

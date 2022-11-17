@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package dice.matchmaking;
+
+message MatchmakingState {
+  string id = 1;
+  repeated string queue = 2;
+  map<string, PlayerRefs> open_matches = 3;
+}
+
+message PlayerRefs {
+  repeated string refs = 1;
+}
+
+message PlayerRefInput {
+  string ref = 1;
+}
+
+message MatchRefInput {
+  string ref = 1;
+}
+
+message ManualMatchmakingInput {
+  string player_ref = 1;
+  string match_id = 2;
+}
+
+message MatchPairInput {
+  string player_ref_one = 1;
+  string player_ref_two = 2;
+}
+
+message MatchIdResponse {
+  string match_id = 1;
+}
+
+message MatchFoundEvent {
+  string match_id = 1;
+  repeated string pair = 2;
+}

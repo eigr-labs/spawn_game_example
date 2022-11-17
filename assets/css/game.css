@@ -1,0 +1,29 @@
+.match-container {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+}
+
+.match-container p.title {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.fade-screen-info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: hsl(0deg 2% 48% / 80%);
+  z-index: 1;
+}
+
+.fade-screen-info .bold {
+  font-weight: bold;
+}

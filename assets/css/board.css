@@ -1,0 +1,86 @@
+.board-rows, .sum-rows {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 320px;
+}
+
+.board-rows .column {
+  cursor: pointer;
+}
+
+.board-rows .column.enemy {
+  cursor: initial;
+}
+
+.board-rows .column:hover .spot {
+  background-color: #3c3c3c;
+}
+
+.board-rows .column.enemy:hover .spot {
+  background-color: #646362;
+}
+
+.board-rows {
+  padding-bottom: 0;
+}
+
+.sum-rows {
+  padding-top: 0;
+}
+
+.total-sum {
+  position: absolute;
+  right: 22px;
+  top: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.dice-holder {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #646362;
+  border-radius: 10px;
+  display: flex;
+  padding: 8px;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice-holder h1 {
+  margin: 0;
+  margin-right: 5px;
+  font-weight: bold;
+  color: #cecece;
+}
+
+.dice-holder.enemy {
+  left: 0;
+  bottom: 0;
+  right: initial;
+  top: initial;
+}
+
+.board-rows .spot, .sum-rows .spot {
+  background-color: #646362;
+  border-radius: 10px;
+  display: flex;
+  padding: 8px;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-empty {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.board-rows .spot.blank, .sum-rows .spot.blank {
+  background-color: inherit;
+}
