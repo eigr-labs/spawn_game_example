@@ -33,7 +33,7 @@ spec:
               value: mysql
             - name: SPAWN_STATESTORE_KEY
               value: 3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
-          image: eigr-labs/dice-game:0.1.0
+          image: eigr/dice-game-example:0.1.0
           name: spawn-dice-game
           resources:
             limits:
