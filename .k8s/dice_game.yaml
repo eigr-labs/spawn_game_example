@@ -10,7 +10,7 @@ metadata:
   name: spawn-dice-game
   namespace: eigr-labs
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       eigr_functions_protocol_major_version: "0"
@@ -29,6 +29,10 @@ spec:
         - env:
             - name: MIX_ENV
               value: prod
+            - name: PROXY_DATABASE_HOST
+              value: mysql
+            - name: SPAWN_STATESTORE_KEY
+              value: 3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=
           image: eigr-labs/dice-game:0.1.0
           name: spawn-dice-game
           resources:
@@ -43,3 +47,5 @@ spec:
             readOnlyRootFilesystem: false
             runAsNonRoot: true
             runAsUser: 65534
+          ports:
+          - containerPort: 8800
