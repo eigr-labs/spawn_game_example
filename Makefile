@@ -1,8 +1,8 @@
 
 version=0.1.0
-registry=eigr-labs
+registry=eigr
 
-spawn-dice-game-image=${registry}/dice-game:${version}
+spawn-dice-game-image=${registry}/dice-game-example:${version}
 
 build:
 	mix deps.get && mix compile

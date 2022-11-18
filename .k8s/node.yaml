@@ -8,6 +8,6 @@ metadata:
 spec:
   host:
     embedded: true
-    image: eigr-labs/dice-game:0.1.0 # Mandatory
+    image: eigr/dice-game-example:0.1.0 # Mandatory
     ports:
       - containerPort: 8091
