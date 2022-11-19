@@ -8,4 +8,7 @@ metadata:
 spec:
   host:
     embedded: true
-    image: eigr/dice-game-example:0.1.1 # Mandatory
+    image: eigr/dice-game-example:0.1.1
+    ports:
+      - name: "http"
+        containerPort: 8800
