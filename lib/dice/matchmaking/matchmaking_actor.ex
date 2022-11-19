@@ -5,10 +5,8 @@ defmodule Dice.Matchmaking.Actor do
 
   use SpawnSdk.Actor,
     abstract: true,
-    persistent: false,
-    state_type: Dice.Matchmaking.MatchmakingState,
-    # 10 years
-    deactivate_timeout: 10 * 365 * 24 * 60 * 60 * 1000
+    persistent: true,
+    state_type: Dice.Matchmaking.MatchmakingState
 
   require Logger
 
@@ -27,7 +25,7 @@ defmodule Dice.Matchmaking.Actor do
 
   defact init(%Context{} = ctx) do
     matchmaking_id = ctx.self.name
-    state = %MatchmakingState{id: matchmaking_id, queue: [], open_matches: %{}}
+    state = ctx.state || %MatchmakingState{id: matchmaking_id, queue: [], open_matches: %{}}
 
     Logger.info("Initialized matchmaking...", label: matchmaking_id)
 
