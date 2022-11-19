@@ -3,7 +3,7 @@ apiVersion: spawn-eigr.io/v1
 kind: ActorSystem
 metadata:
   name: game-system
-  namespace: eigr-labs
+  namespace: default
 spec:
   statestore:
     type: MySql

@@ -4,10 +4,8 @@ kind: ActorHost
 metadata:
   name: spawn-dice-game
   system: game-system
-  namespace: eigr-labs
+  namespace: default
 spec:
   host:
     embedded: true
-    image: eigr/dice-game-example:0.1.0 # Mandatory
-    ports:
-      - containerPort: 8091
+    image: eigr/dice-game-example:0.1.1 # Mandatory

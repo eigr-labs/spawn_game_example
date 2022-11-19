@@ -1,5 +1,5 @@
 
-version=0.1.0
+version=0.1.1
 registry=eigr
 
 spawn-dice-game-image=${registry}/dice-game-example:${version}
