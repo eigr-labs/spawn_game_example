@@ -7,7 +7,7 @@ This is a game project demonstrating how to make use of the framework [Spawn](ht
 With Spawn we are able to focus on the business domain of the game only and not worry about infrastructure.
 
 One of the goals with this game is to be able to play whoever you want in the world with no noticeable latency, that is achieved by:
-  - Having the definition of actors that mimic what a GenServer would do, but with cluster distribution solved
+  - Having the definition of actors that mimic what a GenServer would do, but with Spawn's included batteries you focus only on your domain eliminating the boilerplate and gaining in return state management, guaranteed actor lifecycle among other things.
   - Spawn use of CRDTs to handle actor invocations
   - Spawn dealing with all infrastructure related with clustering
   - Spawn distributing actors automatically in the cluster
