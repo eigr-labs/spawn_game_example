@@ -6,6 +6,8 @@ metadata:
   system: game-system
   namespace: default
 spec:
+  autoscaler: # Optional
+    max: 6
   host:
     embedded: true
     image: eigr/dice-game-example:0.1.1
