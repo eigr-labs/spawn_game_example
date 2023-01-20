@@ -6,10 +6,6 @@ defmodule Dice.Matchmaking do
   alias Dice.Matchmaking
   alias SpawnSdk.Channel.Subscriber
 
-  def start(matchmaking_ref \\ "default_matchmaking") do
-    SpawnSdk.spawn_actor(matchmaking_ref, system: "game-system", actor: Dice.Matchmaking.Actor)
-  end
-
   @spec subscribe(binary()) :: :ok | {:error, term()}
   def subscribe(matchmaking_ref \\ "default_matchmaking") do
     Subscriber.subscribe("matchmaking:#{matchmaking_ref}")
@@ -25,7 +21,13 @@ defmodule Dice.Matchmaking do
   """
   def enqueue(player_ref, matchmaking_ref \\ "default_matchmaking") do
     payload = %Matchmaking.PlayerRefInput{ref: player_ref}
-    SpawnSdk.invoke(matchmaking_ref, system: "game-system", command: "enqueue", payload: payload)
+
+    SpawnSdk.invoke(matchmaking_ref,
+      ref: Dice.Matchmaking.Actor,
+      system: "game-system",
+      command: "enqueue",
+      payload: payload
+    )
   end
 
   @doc """
@@ -33,7 +35,13 @@ defmodule Dice.Matchmaking do
   """
   def dequeue(player_ref, matchmaking_ref \\ "default_matchmaking") do
     payload = %Matchmaking.PlayerRefInput{ref: player_ref}
-    SpawnSdk.invoke(matchmaking_ref, system: "game-system", command: "dequeue", payload: payload)
+
+    SpawnSdk.invoke(matchmaking_ref,
+      ref: Dice.Matchmaking.Actor,
+      system: "game-system",
+      command: "dequeue",
+      payload: payload
+    )
   end
 
   @doc """
@@ -41,7 +49,13 @@ defmodule Dice.Matchmaking do
   """
   def manual(player_ref, match_ref, matchmaking_ref \\ "default_matchmaking") do
     payload = %Matchmaking.ManualMatchmakingInput{match_id: match_ref, player_ref: player_ref}
-    SpawnSdk.invoke(matchmaking_ref, system: "game-system", command: "manual", payload: payload)
+
+    SpawnSdk.invoke(matchmaking_ref,
+      ref: Dice.Matchmaking.Actor,
+      system: "game-system",
+      command: "manual",
+      payload: payload
+    )
   end
 
   @doc """
@@ -51,6 +65,7 @@ defmodule Dice.Matchmaking do
     payload = %Matchmaking.PlayerRefInput{ref: player_ref}
 
     SpawnSdk.invoke(matchmaking_ref,
+      ref: Dice.Matchmaking.Actor,
       system: "game-system",
       command: "get_active_game",
       payload: payload

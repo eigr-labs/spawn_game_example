@@ -18,9 +18,6 @@ defmodule Dice.Application do
         ]
       },
 
-      # Start Matchmaking actor for default matchmaking
-      {Task, fn -> Dice.Matchmaking.start() end},
-
       # Start the Telemetry supervisor
       DiceWeb.Telemetry,
 
