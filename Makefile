@@ -1,5 +1,5 @@
 
-version=0.1.1
+version=0.5.0
 registry=eigr
 
 spawn-dice-game-image=${registry}/dice-game-example:${version}
@@ -38,7 +38,7 @@ k8s-apply-host:
 	kubectl apply -f .k8s/host.yaml
 
 k8s-proxy: 
-	kubectl port-forward service/spawn-dice-game-svc 8800:8800
+	kubectl port-forward service/spawn-dice-game 8800:8800
 
 build-image:
 	docker build -f Dockerfile -t ${spawn-dice-game-image} .

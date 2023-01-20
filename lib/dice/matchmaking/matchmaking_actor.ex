@@ -2,10 +2,9 @@ defmodule Dice.Matchmaking.Actor do
   @moduledoc """
   Defines matchmaking actor iteractions
   """
-
   use SpawnSdk.Actor,
-    abstract: true,
-    persistent: true,
+    kind: :abstract,
+    stateful: true,
     state_type: Dice.Matchmaking.MatchmakingState
 
   require Logger

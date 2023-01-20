@@ -41,15 +41,11 @@ defmodule Dice.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:horde, "~> 0.8.7"},
       {:uuid, "~> 1.1"},
-      {:protobuf, "~> 0.11.0"},
-      {:spawn_sdk, "~> 0.5.0-rc.3"},
-      {:spawn_statestores_mysql, "~> 0.5.0-rc.3"}
+      {:spawn_sdk, "~> 0.5.0-rc.12"},
+      {:spawn_statestores_mysql, "~> 0.5.0-rc.12"}
     ]
   end
 
