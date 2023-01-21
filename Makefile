@@ -26,7 +26,7 @@ k8s-create-mysql-connection-secret:
 		--from-literal=port='3306' \
 		--from-literal=username='admin' \
 		--from-literal=password='admin' \
-		--from-literal=encryptionKey='3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE='
+		--from-literal=encryptionKey='3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE=' -n eigr-functions
 
 k8s-apply-mysql:
 	kubectl apply -f .k8s/mysql.yaml
@@ -39,6 +39,13 @@ k8s-apply-host:
 
 k8s-proxy: 
 	kubectl port-forward service/spawn-dice-game 8800:8800
+
+k8s-delete-all:
+	kubectl delete -f .k8s/mysql.yaml
+	kubectl delete secret mysql-connection-secret -n eigr-functions
+	kubectl delete -f .k8s/system.yaml
+	kubectl delete -f .k8s/host.yaml
+	curl -L https://raw.githubusercontent.com/eigr/spawn/main/spawn_operator/spawn_operator/manifest.yaml | kubectl delete -f -
 
 build-image:
 	docker build -f Dockerfile -t ${spawn-dice-game-image} .
