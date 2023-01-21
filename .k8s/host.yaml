@@ -2,14 +2,14 @@
 apiVersion: spawn-eigr.io/v1
 kind: ActorHost
 metadata:
-  labels:
-    spawn-eigr.io.actor-system: game-system
   name: spawn-dice-game
   namespace: default
+  annotations:
+    spawn-eigr.io.actor-system: game-system
 spec:
   host:
     embedded: true
-    image: eigr/dice-game-example:0.5.3
+    image: eigr/dice-game-example:0.5.4
     ports:
       - name: "http"
         containerPort: 8800
