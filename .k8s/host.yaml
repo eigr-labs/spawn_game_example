@@ -7,11 +7,11 @@ metadata:
   name: spawn-dice-game
   namespace: default
 spec:
-  autoscaler: # Optional
-    max: 1
   host:
     embedded: true
-    image: eigr/dice-game-example:0.5.2
+    image: eigr/dice-game-example:0.5.3
     ports:
       - name: "http"
         containerPort: 8800
+  autoscaler:
+    max: 1
