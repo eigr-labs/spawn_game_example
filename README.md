@@ -62,6 +62,12 @@ make k8s-proxy
 
 It will forward a port to 8800, you can see it running in http://localhost:8800
 
+## Destroy
+
+```shell
+make k8s-delete-all
+```
+
 ### In dev mode assuming you have up and running MySQL
 
 To run locally in dev mode:

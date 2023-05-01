@@ -1,5 +1,5 @@
 
-version=0.5.3
+version=0.6.3
 registry=eigr
 
 spawn-dice-game-image=${registry}/dice-game-example:${version}
@@ -14,10 +14,10 @@ k8s-create-ns:
 	kubectl create ns eigr-functions
 
 k8s-create-operator:
-	curl -L https://raw.githubusercontent.com/eigr/spawn/main/spawn_operator/spawn_operator/manifest.yaml | kubectl apply -f -
+	curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl apply -f -
 
 k8s-delete-operator:
-	curl -L https://raw.githubusercontent.com/eigr/spawn/main/spawn_operator/spawn_operator/manifest.yaml | kubectl delete -f -
+	curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl delete -f -
 
 k8s-create-mysql-connection-secret:
 	kubectl create secret generic mysql-connection-secret \
@@ -33,6 +33,7 @@ k8s-apply-mysql:
 
 k8s-apply-system:
 	kubectl apply -f .k8s/system.yaml
+	sleep 5
 
 k8s-apply-host:
 	kubectl apply -f .k8s/host.yaml
@@ -45,13 +46,13 @@ k8s-delete-all:
 	kubectl delete secret mysql-connection-secret -n eigr-functions
 	kubectl delete -f .k8s/system.yaml
 	kubectl delete -f .k8s/host.yaml
-	curl -L https://raw.githubusercontent.com/eigr/spawn/main/spawn_operator/spawn_operator/manifest.yaml | kubectl delete -f -
+	curl -L curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl delete -f -
 
 build-image:
 	docker build -f Dockerfile -t ${spawn-dice-game-image} .
 
 run-image:
-	docker run --rm --name=spawn-dice-game --net=host ${spawn-dice-game-image}
+	docker run --rm --name=spawn-dice-game --net=host -e PROXY_DATABASE_TYPE=mysql -e PROXY_DATABASE_POOL_SIZE=10 -e SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= ${spawn-dice-game-image}
 
 push-image:
 	docker push ${spawn-dice-game-image}
