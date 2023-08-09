@@ -16,7 +16,7 @@ defmodule Dice.Game do
     SpawnSdk.invoke(match_ref,
       system: "game-system",
       ref: Dice.Game.MatchActor,
-      command: "create",
+      action: "create",
       payload: payload
     )
   end
@@ -45,20 +45,20 @@ defmodule Dice.Game do
 
   def join(match_ref, player_ref) do
     payload = %JoinMatchAction{player_ref: player_ref}
-    SpawnSdk.invoke(match_ref, system: "game-system", command: "join", payload: payload)
+    SpawnSdk.invoke(match_ref, system: "game-system", action: "join", payload: payload)
   end
 
   def prepare_start(match_ref) do
-    SpawnSdk.invoke(match_ref, system: "game-system", command: "prepare_start")
+    SpawnSdk.invoke(match_ref, system: "game-system", action: "prepare_start")
   end
 
   def start(match_ref) do
-    SpawnSdk.invoke(match_ref, system: "game-system", command: "start")
+    SpawnSdk.invoke(match_ref, system: "game-system", action: "start")
   end
 
   @spec get_current_state(match_ref) :: %MatchState{}
   def get_current_state(match_ref) do
-    {:ok, state} = SpawnSdk.invoke(match_ref, system: "game-system", command: "get_state")
+    {:ok, state} = SpawnSdk.invoke(match_ref, system: "game-system", action: "get_state")
 
     state
   end
@@ -66,6 +66,6 @@ defmodule Dice.Game do
   def play(match_ref, player_ref, row_index) do
     payload = %PlayMatchAction{player_ref: player_ref, row_index: row_index}
 
-    SpawnSdk.invoke(match_ref, system: "game-system", command: "play", payload: payload)
+    SpawnSdk.invoke(match_ref, system: "game-system", action: "play", payload: payload)
   end
 end
