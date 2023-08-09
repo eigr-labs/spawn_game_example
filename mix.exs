@@ -44,8 +44,8 @@ defmodule Dice.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:uuid, "~> 1.1"},
-      {:spawn_sdk, "== 1.0.0-rc.17"},
-      {:spawn_statestores_mysql, "== 1.0.0-rc.17"}
+      {:spawn_sdk, "== 1.0.0-rc.18"},
+      {:spawn_statestores_mysql, "== 1.0.0-rc.18"}
     ]
   end
 
