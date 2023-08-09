@@ -4,7 +4,7 @@ defmodule Dice.MixProject do
   def project do
     [
       app: :dice,
-      version: "1.0.0-rc16",
+      version: "1.0.0-rc.18",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
