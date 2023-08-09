@@ -4,7 +4,7 @@ defmodule Dice.MixProject do
   def project do
     [
       app: :dice,
-      version: "0.5.4",
+      version: "1.0.0-rc16",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
@@ -44,8 +44,8 @@ defmodule Dice.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:uuid, "~> 1.1"},
-      {:spawn_sdk, "~> 0.6.3"},
-      {:spawn_statestores_mysql, "~> 0.6.3"}
+      {:spawn_sdk, "== 1.0.0-rc.17"},
+      {:spawn_statestores_mysql, "== 1.0.0-rc.17"}
     ]
   end
 

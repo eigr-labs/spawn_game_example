@@ -3,7 +3,7 @@ defmodule Dice.Matchmaking.Actor do
   Defines matchmaking actor iteractions
   """
   use SpawnSdk.Actor,
-    kind: :abstract,
+    kind: :unamed,
     stateful: true,
     state_type: Dice.Matchmaking.MatchmakingState
 

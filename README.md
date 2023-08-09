@@ -52,9 +52,9 @@ Run the following commands sequentially
 ```BASH
 make start-minikube
 make k8s-create-ns
-make k8s-create-mysql-connection-secret
 make k8s-create-operator
 make k8s-apply-mysql
+make k8s-create-mysql-connection-secret
 make k8s-apply-system 
 make k8s-apply-host
 make k8s-proxy

@@ -1,6 +1,6 @@
 defmodule Dice.Game.MatchActor do
   use SpawnSdk.Actor,
-    kind: :abstract,
+    kind: :unamed,
     stateful: true,
     state_type: Dice.Game.MatchState,
     deactivate_timeout: 60 * 60 * 1000

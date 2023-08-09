@@ -75,6 +75,7 @@ ENV MIX_ENV="prod"
 ENV SECRET_KEY_BASE=0DDMAR+rMMpkjG0KiDvzvDdmIltXa55Itq9BxDF5Z608tI3/Z38qWxLqi+7jCfab
 
 # Only copy the final release from the build stage
+COPY rel/overlays/mtls.ssl.conf .
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/dice ./
 
 USER nobody

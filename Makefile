@@ -1,5 +1,5 @@
 
-version=0.6.3
+version=1.0.0-rc.17
 registry=eigr
 
 spawn-dice-game-image=${registry}/dice-game-example:${version}
@@ -14,10 +14,10 @@ k8s-create-ns:
 	kubectl create ns eigr-functions
 
 k8s-create-operator:
-	curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl apply -f -
+	curl -L https://github.com/eigr/spawn/releases/download/v1.0.0-rc.17/manifest.yaml | kubectl apply -f -
 
 k8s-delete-operator:
-	curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl delete -f -
+	curl -L https://github.com/eigr/spawn/releases/download/v1.0.0-rc.17/manifest.yaml | kubectl delete -f -
 
 k8s-create-mysql-connection-secret:
 	kubectl create secret generic mysql-connection-secret \
@@ -46,10 +46,13 @@ k8s-delete-all:
 	kubectl delete secret mysql-connection-secret -n eigr-functions
 	kubectl delete -f .k8s/system.yaml
 	kubectl delete -f .k8s/host.yaml
-	curl -L curl -L https://github.com/eigr/spawn/releases/download/v0.6.3/manifest.yaml | kubectl delete -f -
+	curl -L curl -L https://github.com/eigr/spawn/releases/download/v1.0.0-rc.17/manifest.yaml | kubectl delete -f -
 
 build-image:
 	docker build -f Dockerfile -t ${spawn-dice-game-image} .
+
+run:
+	mix deps.get && PROXY_ACTOR_SYSTEM_NAME=game-system PROXY_CLUSTER_STRATEGY=epmd SPAWN_USE_INTERNAL_NATS=false SPAWN_PUBSUB_ADAPTER=native PROXY_DATABASE_TYPE=mysql PROXY_DATABASE_POOL_SIZE=10 SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= iex --name game@127.0.0.1 -S mix phx.server
 
 run-image:
 	docker run --rm --name=spawn-dice-game --net=host -e PROXY_DATABASE_TYPE=mysql -e PROXY_DATABASE_POOL_SIZE=10 -e SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= ${spawn-dice-game-image}
