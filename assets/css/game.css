@@ -1,8 +1,27 @@
 .match-container {
-  border: 1px solid #ccc;
   border-radius: 15px;
   padding: 20px;
   position: relative;
+}
+
+.play {
+  color: white;
+  font-family: 'Fredericka the Great', cursive !important;
+  font-weight: bold;
+  background: black;
+  border-color: white;
+  height: auto;
+  padding: .5em 1em .5em 1em;
+  font-size: 3em;
+  text-align: center;
+}
+
+h1 {
+  font-size: 10rem;
+}
+
+h2 {
+  font-size: 4rem;
 }
 
 .match-container p.title {
@@ -20,7 +39,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: hsl(0deg 2% 48% / 80%);
+  background: hsl(0deg 0% 0% / 80%);
   z-index: 1;
 }
 

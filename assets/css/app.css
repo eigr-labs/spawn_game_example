@@ -3,11 +3,35 @@
 @import "./board.css";
 @import "./game.css";
 
-.container.centered {
+.centered {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100vh;
+  flex-flow: initial;
+}
+
+/* Styles for screens up to 576px (typically smartphones) */
+@media (max-width: 576px) {
+  .centered {
+    flex-direction: row;
+    flex-flow: column;
+    text-align: center;
+  }
+
+  .title {
+    flex-direction: row !important;
+    margin: 0 !important;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+body {
+  font-family: 'Fredericka the Great', cursive !important;
+  margin: 0;
 }
 
 .loader {

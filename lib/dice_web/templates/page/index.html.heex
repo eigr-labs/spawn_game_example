@@ -1,24 +1,23 @@
-<div>
-  <div class="d-flex">
-    <h1 class="mr-auto">Spawn Knucklebones</h1>
-  </div>
+<div class="d-flex centered">
+  <div class="d-flex title" style="flex-direction: column; margin-right: 50px">
+    <h1>Tic</h1>
+    <h1>Tac</h1>
+    <h1>Toe</h1>
 
-  <form phx-submit="create_room" class="d-flex">
-    <input class="mr-2" type="text" placeholder="Place Match ID" name="match_id" id="match_id_input" />
-    <button>Enter Room</button>
-  </form>
+    <%!-- <button class="play" phx-click="join_matchmaking">Leave</button> --%>
+  </div>
 
   <%= if not @playable do %>
     <%= if is_nil(@linked_matchmaking) do %>
-      <button phx-click="join_matchmaking">Find match</button>
+      <button class="play" phx-click="join_matchmaking">Play</button>
     <% else %>
-      <button class="d-flex flex-center" phx-click="cancel_matchmaking"><div class="loader mr-2"></div>Cancel</button>
+      <button class="play d-flex flex-center" phx-click="cancel_matchmaking"><div class="loader mr-2"></div>Cancel</button>
     <% end %>
   <% end %>
 
   <%= if @playable do %>
     <div>
-      <%= live_render(@socket, DiceWeb.Live.GamePage, id: "game_page", session: %{"player_id" => @player_id, "match_id" => @match_id}) %>
+      <%= live_render(@socket, DiceWeb.Live.GameTicTacToePage, id: "game_page", session: %{"player_id" => @player_id, "match_id" => @match_id}) %>
     </div>
   <% end %>
 </div>

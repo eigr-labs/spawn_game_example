@@ -5,45 +5,21 @@ defmodule DiceWeb.Live.BoardComponent do
     Phoenix.View.render(DiceWeb.LiveComponentsView, "board.html", assigns)
   end
 
-  def rows_sum(assigns) do
+  def board(assigns) do
     ~H"""
-    <div class="row sum-rows">
-      <%= for sum <- @rows_sum do %>
-        <div class="column">
-          <h2 class="spot blank"><%= sum %></h2>
-        </div>
-      <% end %>
-    </div>
-    """
-  end
-
-  def dice_spots(assigns) do
-    block_col = fn col ->
-      ~H"""
-        <%= for num <- if @enemy, do: col, else: Enum.reverse(col) do %>
-          <div class="w-full spot">
-            <%= if num != 0 do %>
-              <img src={"/images/#{num}.png"} width="64" alt="dice" />
-            <% else %>
-              <div class="block-empty"/>
-            <% end %>
+    <%= for {rows, row} <- Enum.with_index(assigns.board) do %>
+      <div class={"rr r-#{row} board-rows"}>
+        <%= for {value, col} <- Enum.with_index(rows) do %>
+          <div class={"cc c-#{col}"} phx-value-row={row} phx-value-col={col} phx-click="click">
+            <h2 class="spot blank"><%= get_label(value) %></h2>
           </div>
         <% end %>
-      """
-    end
-
-    ~H"""
-    <%= for {col, index} <- Enum.with_index(@snapshot.board) do %>
-      <%= if not @match.my_turn || @enemy || @match.finished do %>
-        <div class="column enemy">
-          <%= block_col.(col) %>
-        </div>
-      <% else %>
-        <div class="column" phx-value-row={index} phx-click="row_click">
-          <%= block_col.(col) %>
-        </div>
-      <% end %>
+      </div>
     <% end %>
     """
   end
+
+  defp get_label(0), do: "X"
+  defp get_label(1), do: "O"
+  defp get_label(nil), do: ""
 end

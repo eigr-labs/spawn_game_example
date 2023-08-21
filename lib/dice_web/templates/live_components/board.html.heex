@@ -1,27 +1,7 @@
-<div class="container centered">
+<div class="container d-flex">
   <%= cond do %>
   <% @snapshot -> %>
-    <%= if @enemy do %>
-      <DiceWeb.Live.BoardComponent.rows_sum rows_sum={@snapshot.rows_sum} />
-    <% end %>
-
-    <div class="row board-rows">
-      <DiceWeb.Live.BoardComponent.dice_spots snapshot={@snapshot} enemy={@enemy} match={@match}/>
-    </div>
-
-    <div class={"dice-holder #{@enemy && "enemy"}"}>
-      <h1><%= @snapshot.total %></h1>
-
-      <%= if ((@match.player_turn_ref == @player_id && !@enemy) || (@match.player_turn_ref != @player_id && @enemy)) && @match.dice && @match.status == :playing do %>
-        <img src={"/images/#{@match.dice}.png"} width="64" alt="dice" />
-      <% else %>
-        <div class="block-empty"/>
-      <% end %>
-    </div>
-
-    <%= if not @enemy do %>
-      <DiceWeb.Live.BoardComponent.rows_sum rows_sum={@snapshot.rows_sum} />
-    <% end %>
+    <DiceWeb.Live.BoardComponent.board board={@snapshot} />
   <% @match.finished -> %>
     <h2>Winner <%= @match.winner %></h2>
   <% true -> %>

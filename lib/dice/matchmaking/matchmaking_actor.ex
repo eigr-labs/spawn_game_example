@@ -9,7 +9,7 @@ defmodule Dice.Matchmaking.Actor do
 
   require Logger
 
-  alias Dice.Game
+  alias Dice.GameTicTacToe, as: Game
   alias Dice.Matchmaking.StateHelper
 
   alias Dice.Matchmaking.{
@@ -18,8 +18,7 @@ defmodule Dice.Matchmaking.Actor do
     MatchPairInput,
     ManualMatchmakingInput,
     MatchIdResponse,
-    MatchFoundEvent,
-    MatchRefInput
+    MatchFoundEvent
   }
 
   defact init(%Context{} = ctx) do
@@ -86,7 +85,7 @@ defmodule Dice.Matchmaking.Actor do
     |> Value.reply!()
   end
 
-  defact match_finished(%MatchRefInput{ref: match_id}, %Context{state: state} = ctx) do
+  defact match_finished(%{ref: match_id}, %Context{state: state} = ctx) do
     matchmaking_id = ctx.self.name
 
     Logger.info("Match finished, removing match from matchmaking: #{inspect(match_id)}",

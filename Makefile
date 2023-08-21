@@ -52,7 +52,7 @@ build-image:
 	docker build -f Dockerfile -t ${spawn-dice-game-image} .
 
 run:
-	mix deps.get && PROXY_ACTOR_SYSTEM_NAME=game-system PROXY_CLUSTER_STRATEGY=epmd SPAWN_USE_INTERNAL_NATS=false SPAWN_PUBSUB_ADAPTER=native PROXY_DATABASE_TYPE=mysql PROXY_DATABASE_POOL_SIZE=10 SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= iex --name game@127.0.0.1 -S mix phx.server
+	PROXY_ACTOR_SYSTEM_NAME=game-system PROXY_CLUSTER_STRATEGY=epmd PROXY_ACTOR_SYSTEM_NAME=game-system SPAWN_USE_INTERNAL_NATS=true SPAWN_PUBSUB_ADAPTER=nats PROXY_DATABASE_TYPE=mysql PROXY_DATABASE_POOL_SIZE=10 SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= iex --name spawn_a2@127.0.0.1 -S mix phx.server
 
 run-image:
 	docker run --rm --name=spawn-dice-game --net=host -e PROXY_DATABASE_TYPE=mysql -e PROXY_DATABASE_POOL_SIZE=10 -e SPAWN_STATESTORE_KEY=3Jnb0hZiHIzHTOih7t2cTEPEpY98Tu1wvQkPfq/XwqE= ${spawn-dice-game-image}

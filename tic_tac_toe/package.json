@@ -1,0 +1,17 @@
+{
+  "name": "tic_tac_toe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@eigr/spawn-sdk": "^1.1.0"
+  },
+  "scripts": {
+    "build": "esbuild index.ts --platform=node --bundle --minify --outfile=dist/index.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.2",
+    "esbuild-node-tsc": "^2.0.5",
+    "ts-node": "^10.9.1"
+  }
+}

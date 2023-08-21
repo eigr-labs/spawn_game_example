@@ -35,3 +35,6 @@ npm-debug.log
 /assets/node_modules/
 
 .elixir_ls
+
+node_modules
+tic_tac_toe/dist

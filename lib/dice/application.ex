@@ -13,9 +13,9 @@ defmodule Dice.Application do
         SpawnSdk.System.Supervisor,
         system: "game-system",
         actors: [
-          Dice.Matchmaking.Actor,
-          Dice.Game.MatchActor
-        ]
+          Dice.Matchmaking.Actor
+        ],
+        extenal_subscribers: []
       },
 
       # Start the Telemetry supervisor

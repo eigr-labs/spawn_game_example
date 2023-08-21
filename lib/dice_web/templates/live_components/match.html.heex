@@ -12,36 +12,34 @@
         <% @match.winner == @player_id -> %>
           <h1 class="bold">
             You win! <br/>
-            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
           </h1>
         <% @spectate -> %>
           <h1 class="bold">
             Match ended <br/>
-            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
           </h1>
         <% true -> %>
           <h1 class="bold">
             You lose! <br/>
-            <%= @match.board_snapshot.total %> - <%= @match.opposite_board_snapshot.total %> 
           </h1>
         <% end %>
       <% else %>
         <h1 class="bold">Draw</h1>
       <% end %>
 
-      <button phx-click="rematch">Rematch</button>
+      <button class="play" phx-click="rematch">Rematch</button>
     </div>
   <% end %>
 
   <%= cond do %>
   <% @match.my_turn -> %>
-    <h1>Your turn</h1>
+    <h2>Your turn</h2>
   <% @spectate -> %>
-    <h1>Spectating</h1>
+    <h2>Spectating</h2>
+  <% @match.status == "playing" -> %>
+    <h2>Enemy turn</h2>
   <% true -> %>
-    <h1>Enemy turn</h1>
+    <h2>Waiting opponent</h2>
   <% end %>
 
-  <.live_component module={DiceWeb.Live.BoardComponent} id="board_id" match={@match} enemy={false} player_id={@player_id} snapshot={@match.board_snapshot} />
-  <.live_component module={DiceWeb.Live.BoardComponent} id="opposite_board_id" match={@match} enemy={true} player_id={@player_id} snapshot={@match.opposite_board_snapshot} />
+  <.live_component module={DiceWeb.Live.BoardComponent} id="board_id" match={@match} player_id={@player_id} snapshot={@match.board} />
 </div>
