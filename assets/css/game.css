@@ -24,6 +24,13 @@ h2 {
   font-size: 4rem;
 }
 
+/* Styles for screens up to 576px (typically smartphones) */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 6rem;
+  }
+}
+
 .match-container p.title {
   margin-left: 5px;
   margin-top: 5px;
